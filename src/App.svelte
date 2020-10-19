@@ -42,7 +42,7 @@
 	var c_sprite;
 	var c_types = [];
 	var c_abilities = [];
-	var c_stats = {};
+	var c_stats = {'hp': 0, 'attack': 0, 'defense': 0, 'special-attack': 0, 'special-defense': 0};
 	
 	// calls update() everytime pokelink changes
 	$: {
@@ -65,7 +65,7 @@
 		}
 		
 		for (const i in j.stats) {
-			c_stats[j.stats[i].stat.name] = j.stats[i].base_stat;
+			c_stats[j.stats[i].stat.name] = j.stats[i].base_stat/255;
 		}
 		console.log(c_stats);
 	}
@@ -99,6 +99,19 @@
 			</div>
 		</div>
 	</div>
+	<div class="stat-box">
+		<h6>hp:</h6>
+		<progress class="stats" value={c_stats['hp']}/>
+		<h6>attack:</h6>
+		<progress class="stats" value={c_stats['attack']}/>
+		<h6>defense:</h6>
+		<progress class="stats" value={c_stats['defense']}/>
+		<h6>special-defense:</h6>
+		<progress class="stats" value={c_stats['special-defense']}/>
+		<h6>special attack:</h6>
+		<progress class="stats" value={c_stats['special-attack']}/>
+	</div>
+	
 </main>
 
 <style>
@@ -111,6 +124,24 @@
 		margin: 0 auto;
 	}
 	
+	.stat-box {
+		padding-left: 20px;
+		padding-top: 10%;
+		text-align: left;
+	}
+	
+	.stats {
+		display: block;
+		margin-bottom: 10px;
+		width: 200px;
+		height: 5px;
+		background-color: green;
+	}
+	
+	h6 {
+		margin: 0px;
+	}
+	
 	.contiii {
 		display: flex;
 		justify-content: center;
@@ -118,7 +149,8 @@
 	
 	.conti {
 		width: 100px;
-		margin-left: 20px;
+		margin-right: 10px;
+		margin-left: 10px;
 		padding: 10px;
 		border: 1px black solid;
 	}
