@@ -42,7 +42,9 @@
 	var c_sprite;
 	var c_types = [];
 	var c_abilities = [];
+	var c_stats = {};
 	
+	// calls update() everytime pokelink changes
 	$: {
 		update(pokelink);
 	}
@@ -53,6 +55,7 @@
 		c_sprite = j.sprites.front_default;
 		c_types = [];
 		c_abilities = [];
+		c_stats = {};
 		for(const i in j.types) {
 			c_types.push(j.types[i].type.name);
 		}
@@ -60,6 +63,11 @@
 		for (const i in j.abilities) {
 			c_abilities.push(j.abilities[i].ability.name);
 		}
+		
+		for (const i in j.stats) {
+			c_stats[j.stats[i].stat.name] = j.stats[i].base_stat;
+		}
+		console.log(c_stats);
 	}
 </script>
 
