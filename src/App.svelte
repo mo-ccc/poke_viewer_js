@@ -42,7 +42,7 @@
 	var c_sprite;
 	var c_types = [];
 	var c_abilities = [];
-	var c_stats = {'hp': 0, 'attack': 0, 'defense': 0, 'special-attack': 0, 'special-defense': 0};
+	var c_stats = {'hp': 0, 'attack': 0, 'defense': 0, 'special-attack': 0, 'special-defense': 0, 'speed': 0};
 	
 	// calls update() everytime pokelink changes
 	$: {
@@ -65,7 +65,8 @@
 		}
 		
 		for (const i in j.stats) {
-			c_stats[j.stats[i].stat.name] = j.stats[i].base_stat/255;
+			const s_name = j.stats[i].stat.name;
+			c_stats[s_name] = j.stats[i].base_stat;
 		}
 		console.log(c_stats);
 	}
@@ -100,16 +101,18 @@
 		</div>
 	</div>
 	<div class="stat-box">
-		<h6>hp:</h6>
-		<progress class="stats" value={c_stats['hp']}/>
-		<h6>attack:</h6>
-		<progress class="stats" value={c_stats['attack']}/>
-		<h6>defense:</h6>
-		<progress class="stats" value={c_stats['defense']}/>
-		<h6>special-defense:</h6>
-		<progress class="stats" value={c_stats['special-defense']}/>
-		<h6>special attack:</h6>
-		<progress class="stats" value={c_stats['special-attack']}/>
+		<h6>hp: {c_stats['hp']}</h6>
+		<progress class="stats" value={c_stats['hp']/255}/>
+		<h6>attack: {c_stats['attack']}</h6>
+		<progress class="stats" value={c_stats['attack']/190}/>
+		<h6>special attack: {c_stats['special-attack']}</h6>
+		<progress class="stats" value={c_stats['special-attack']/180}/>
+		<h6>defense: {c_stats['defense']}</h6>
+		<progress class="stats" value={c_stats['defense']/230}/>
+		<h6>special-defense: {c_stats['special-defense']}</h6>
+		<progress class="stats" value={c_stats['special-defense']/230}/>
+		<h6>speed: {c_stats['speed']}</h6>
+		<progress class="stats" value={c_stats['speed']/180}/>
 	</div>
 	
 </main>
