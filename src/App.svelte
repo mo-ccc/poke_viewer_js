@@ -39,6 +39,8 @@
 	var selected = 'bulbasaur';
 	$: pokelink = 'https://pokeapi.co/api/v2/pokemon/' + selected;
 	var j;
+	var c_sprite;
+	var c_types = [];
 	
 	$: {
 		update(pokelink);
@@ -47,7 +49,11 @@
 	async function update(plink) {
 		const l = await fetch(plink);
 		j = await l.json();
-		j = j.base_experience;
+		c_sprite = j.sprites.front_default;
+		c_types = [];
+		for(const i in j.types) {
+			c_types.push(j.types[i].type.name);
+		}
 	}
 </script>
 
@@ -62,7 +68,12 @@
 	
 	<h1>{selected}</h1>
 	<h3>{pokelink}</h3>
-	<p>{j}</p>
+	<img src={c_sprite}/>
+	{#each c_types as ct}
+	  <h5>{ct}</h5>
+	{/each}
+
+	
 </main>
 
 <style>
