@@ -116,7 +116,7 @@
 
 <style>
 	main {
-		display: flex;
+		display: block;
 		justify-content: center;
 		text-align: center;
 		padding: 1em;
@@ -125,9 +125,9 @@
 	}
 	
 	.stat-box {
-		padding-left: 20px;
-		padding-top: 10%;
 		text-align: left;
+		padding-left: 20px;
+		padding-top: 10px;
 	}
 	
 	.stats {
@@ -140,6 +140,11 @@
 	
 	h6 {
 		margin: 0px;
+	}
+	
+	h5, h4 {
+		margin-top: 5px;
+		margin-bottom: 5px;
 	}
 	
 	.contiii {
@@ -158,6 +163,11 @@
 	@media (min-width: 640px) {
 		main {
 			max-width: none;
+			display: flex;
+		}
+		
+		.stat-box {
+			padding-top: 10%;
 		}
 	}
 </style>
