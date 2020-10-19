@@ -41,6 +41,7 @@
 	var j;
 	var c_sprite;
 	var c_types = [];
+	var c_abilities = [];
 	
 	$: {
 		update(pokelink);
@@ -51,37 +52,67 @@
 		j = await l.json();
 		c_sprite = j.sprites.front_default;
 		c_types = [];
+		c_abilities = [];
 		for(const i in j.types) {
 			c_types.push(j.types[i].type.name);
+		}
+		
+		for (const i in j.abilities) {
+			c_abilities.push(j.abilities[i].ability.name);
 		}
 	}
 </script>
 
 <main>
-	<select bind:value={selected}>
-		{#each pokemons as pokemon}
-		  <option value={pokemon}>
-		    {pokemon}
-		  </option>
-		{/each}
-	</select>
-	
-	<h1>{selected}</h1>
-	<h3>{pokelink}</h3>
-	<img src={c_sprite}/>
-	{#each c_types as ct}
-	  <h5>{ct}</h5>
-	{/each}
+	<div class="main-body">
+		<select bind:value={selected}>
+			{#each pokemons as pokemon}
+			  <option value={pokemon}>
+				{pokemon}
+			  </option>
+			{/each}
+		</select>
+		
+		<h1>{selected}</h1>
+		<img src={c_sprite}/>
+		<div class="contiii">
+			<div class="conti">
+				<h4>types:</h4>
+				{#each c_types as ct}
+				  <h5>{ct}</h5>
+				{/each}
+			</div>
 
-	
+			<div class="conti">
+				<h4>abilities:</h4>
+				{#each c_abilities as ct}
+				  <h5>{ct}</h5>
+				{/each}
+			</div>
+		</div>
+	</div>
 </main>
 
 <style>
 	main {
+		display: flex;
+		justify-content: center;
 		text-align: center;
 		padding: 1em;
 		max-width: 240px;
 		margin: 0 auto;
+	}
+	
+	.contiii {
+		display: flex;
+		justify-content: center;
+	}
+	
+	.conti {
+		width: 100px;
+		margin-left: 20px;
+		padding: 10px;
+		border: 1px black solid;
 	}
 
 	@media (min-width: 640px) {
