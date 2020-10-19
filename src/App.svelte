@@ -36,11 +36,18 @@
 					 'moltres', 'dratini', 'dragonair', 'dragonite',
 					 'mewtwo', 'mew'];
 					 
-	var selected = '';
+	var selected = 'bulbasaur';
 	$: pokelink = 'https://pokeapi.co/api/v2/pokemon/' + selected;
+	var j;
 	
-	function updateview() {
-		
+	$: {
+		update(pokelink);
+	}
+	
+	async function update(plink) {
+		const l = await fetch(plink);
+		j = await l.json();
+		j = j.base_experience;
 	}
 </script>
 
@@ -55,6 +62,7 @@
 	
 	<h1>{selected}</h1>
 	<h3>{pokelink}</h3>
+	<p>{j}</p>
 </main>
 
 <style>
