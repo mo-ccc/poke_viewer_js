@@ -1,88 +1,18 @@
-<script>
-	let pokemons = ['bulbasaur', 'ivysaur', 'venusaur', 'charmander',
-                    'charmeleon', 'charizard', 'squirtle', 'wartortle',
-					 'blastoise', 'caterpie', 'metapod', 'butterfree',
-					 'weedle', 'kakuna', 'beedrill', 'pidgey',
-					 'pidgeotto', 'pidgeot', 'rattata', 'raticate',
-					 'spearow', 'fearow', 'ekans', 'arbok', 'pikachu',
-					 'raichu', 'sandshrew', 'sandslash', 'nidoran-f',
-					 'nidorina', 'nidoqueen', 'nidoran-m', 'nidorino',
-					 'nidoking', 'clefairy', 'clefable', 'vulpix',
-					 'ninetales', 'jigglypuff', 'wigglytuff', 'zubat',
-					 'golbat', 'oddish', 'gloom', 'vileplume', 'paras',
-					 'parasect', 'venonat', 'venomoth', 'diglett',
-					 'dugtrio', 'meowth', 'persian', 'psyduck', 'golduck',
-					 'mankey', 'primeape', 'growlithe', 'arcanine',
-					 'poliwag', 'poliwhirl', 'poliwrath', 'abra',
-					 'kadabra', 'alakazam', 'machop', 'machoke',
-					 'machamp', 'bellsprout', 'weepinbell', 'victreebel',
-					 'tentacool', 'tentacruel', 'geodude', 'graveler',
-					 'golem', 'ponyta', 'rapidash', 'slowpoke', 'slowbro',
-					 'magnemite', 'magneton', 'farfetchd', 'doduo',
-					 'dodrio', 'seel', 'dewgong', 'grimer', 'muk',
-					 'shellder', 'cloyster', 'gastly', 'haunter',
-					 'gengar', 'onix', 'drowzee', 'hypno', 'krabby',
-					 'kingler', 'voltorb', 'electrode', 'exeggcute',
-					 'exeggutor', 'cubone', 'marowak', 'hitmonlee',
-					 'hitmonchan', 'lickitung', 'koffing', 'weezing',
-					 'rhyhorn', 'rhydon', 'chansey', 'tangela',
-					 'kangaskhan', 'horsea', 'seadra', 'goldeen',
-					 'seaking', 'staryu', 'starmie', 'mr-mime',
-					 'scyther', 'jynx', 'electabuzz', 'magmar', 'pinsir',
-					 'tauros', 'magikarp', 'gyarados', 'lapras', 'ditto',
-					 'eevee', 'vaporeon', 'jolteon', 'flareon', 'porygon',
-					 'omanyte', 'omastar', 'kabuto', 'kabutops',
-					 'aerodactyl', 'snorlax', 'articuno', 'zapdos',
-					 'moltres', 'dratini', 'dragonair', 'dragonite',
-					 'mewtwo', 'mew'];
-					 
-	var selected = 'bulbasaur';
-	$: pokelink = 'https://pokeapi.co/api/v2/pokemon/' + selected;
-	var j;
+<script>					 
+	import OptionMenu from './OptionMenu.svelte';
+
 	var c_sprite;
 	var c_types = [];
 	var c_abilities = [];
 	var c_stats = {'hp': 0, 'attack': 0, 'defense': 0, 'special-attack': 0, 'special-defense': 0, 'speed': 0};
 	
 	// calls update() everytime pokelink changes
-	$: {
-		update(pokelink);
-	}
 	
-	async function update(plink) {
-		const l = await fetch(plink);
-		j = await l.json();
-		c_sprite = j.sprites.front_default;
-		c_types = [];
-		c_abilities = [];
-		c_stats = {};
-		for(const i in j.types) {
-			c_types.push(j.types[i].type.name);
-		}
-		
-		for (const i in j.abilities) {
-			c_abilities.push(j.abilities[i].ability.name);
-		}
-		
-		for (const i in j.stats) {
-			const s_name = j.stats[i].stat.name;
-			c_stats[s_name] = j.stats[i].base_stat;
-		}
-		console.log(c_stats);
-	}
 </script>
 
 <main>
-	<div class="main-body">
-		<select bind:value={selected}>
-			{#each pokemons as pokemon}
-			  <option value={pokemon}>
-				{pokemon}
-			  </option>
-			{/each}
-		</select>
-		
-		<h1>{selected}</h1>
+	<div>
+		<OptionMenu/>
 		<img src={c_sprite}/>
 		<div class="contiii">
 			<div class="conti">
