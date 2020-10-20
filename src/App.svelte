@@ -1,5 +1,6 @@
 <script>					 
 	import OptionMenu from './OptionMenu.svelte';
+	import Psprite from './Psprite.svelte';
 
 	var c_sprite;
 	var c_types = [];
@@ -13,7 +14,7 @@
 <main>
 	<div>
 		<OptionMenu/>
-		<img src={c_sprite}/>
+		<Psprite/>
 		<div class="contiii">
 			<div class="conti">
 				<h4>types:</h4>

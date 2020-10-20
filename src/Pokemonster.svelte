@@ -1,34 +1,39 @@
 <script>
-	export let selected = undefined;
+	import Psprite from './Psprite.svelte';
+	import {c_abilities} from './store.js';
+	import {c_sprite} from './store.js';
+	import {c_stats} from './store.js';
+	import {c_types} from './store.js';
+	export let selected = 'bulbasaur';
+	
 	$: pokelink = 'https://pokeapi.co/api/v2/pokemon/' + selected;
 	
 	$: {
 		update(pokelink);
 	}
-	var c_sprite;
-	var c_types = [];
-	var c_abilities = [];
-	var c_stats = {'hp': 0, 'attack': 0, 'defense': 0, 'special-attack': 0, 'special-defense': 0, 'speed': 0};
 	
 	async function update(plink) {
 		let l = await fetch(plink);
 		let j = await l.json();
-		c_sprite = j.sprites.front_default;
-		c_types = [];
-		c_abilities = [];
-		c_stats = {};
+		c_sprite.set(j.sprites.front_default);
+		let types = [];
+		let abilities = [];
+		let stats = {};
 		for(const i in j.types) {
-			c_types.push(j.types[i].type.name);
+			types.push(j.types[i].type.name);
 		}
+		c_types.set(types);
 		
 		for (const i in j.abilities) {
-			c_abilities.push(j.abilities[i].ability.name);
+			abilities.push(j.abilities[i].ability.name);
 		}
+		c_abilities.set(abilities);
 		
 		for (const i in j.stats) {
 			const s_name = j.stats[i].stat.name;
-			c_stats[s_name] = j.stats[i].base_stat;
+			stats[s_name] = j.stats[i].base_stat;
 		}
+		c_stats.set(stats);
 
 	}
 </script>
