@@ -41,7 +41,7 @@
 </script>
 
 <main>
-	<Pokemonster selected={selected}/>
+	<!-- create select element and fill with pokemons -->
 	<select bind:value={selected}>
 		{#each pokemons as pokemon}
 		  <option value={pokemon}>
@@ -49,5 +49,8 @@
 		  </option>
 		{/each}
 	</select>
+	
+	<!-- pass the selected value to Pokemonster -->
+	<Pokemonster selected={selected}/>
 	<h1>{selected}</h1>
 </main>
