@@ -2,7 +2,8 @@
 
 Similar to my previous poke_viewer project this allows anyone interested in pokemon to have a lightweight introduction into the franchise. The viewer allows users to select from a list of 152 pokemon and view their abilitites, types, stats and sprite.
 
-# Instructions to run
+# Instructions to install
+- Install node js
 - Clone this git onto your local machine
 - cd into the poke_viewer_js folder
 - run 'npm install'
