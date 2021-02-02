@@ -6,12 +6,17 @@ Similar to my previous poke_viewer project this allows anyone interested in poke
 - Install node js -> https://nodejs.org/en/
 - Clone this git onto your local machine
 - cd into the poke_viewer_js folder
-- run 'npm install'
-- run 'npm run dev'
-- visit 'localhost:5000' in a browser of your choice
+- run `npm install`
+
+## Instructions to test application
+- run `npm run dev`
+- visit `localhost:5000` in a browser of your choice
+
+## Instructions to build application
+- run `npm run build`
 
 ## live link
-https://modest-curran-09bad6.netlify.app/
+http://pokeviewerjs.s3-website-ap-southeast-2.amazonaws.com/
 
 ## preview
 ![preview](pokeviewerjs-image.png)
